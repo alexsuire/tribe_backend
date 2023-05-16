@@ -3,8 +3,8 @@ const Nationality = require("../models/nationalities");
 var router = express.Router();
 
 router.get("/allCountries", (req, res) =>
-  Nationality.find().then((allCountries) => {
-    res.json(allCountries);
+  Nationality.find().then((data) => {
+    res.json({data});
   })
 );
 
