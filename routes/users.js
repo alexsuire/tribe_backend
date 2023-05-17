@@ -21,6 +21,7 @@ router.post('/signup', (req, res) => {
 
       const hash = bcrypt.hashSync(req.body.password, 10);
 
+      //Création d'un nouveau user
       const newUser = new User({
         firstname: req.body.firstname, 
         lastname: req.body.lastname,
@@ -29,8 +30,8 @@ router.post('/signup', (req, res) => {
         level: req.body.level,      
         password: hash,
         token: uid2(32),
-        // nationalities: req.body.nationalities,
-        // spots: req.body.spots,
+        nationalities: req.body.nationalities,
+        spots: req.body.spots,
       });
 
       newUser.save().then(newDoc => {
@@ -44,6 +45,8 @@ router.post('/signup', (req, res) => {
   });
 });
 
+
+// Route pour se connecter à l'application
 router.post('/signin', (req, res) => {
   if (!checkBody(req.body, ['email', 'password'])) {
     res.json({ result: false, error: 'Missing or empty fields' });
