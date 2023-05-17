@@ -13,4 +13,9 @@ router.get("/oneCountry/:country", (req, res) =>
     res.json({ data });
   })
 );
+
+
+
+
+
 module.exports = router;

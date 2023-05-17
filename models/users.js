@@ -8,8 +8,8 @@ const userSchema = mongoose.Schema({
     level: String,
     password: String,
     token: String,
-    // nationalities: { type: mongoose.Schema.Types.ObjectId, ref: 'nationalities' },
-    // spots: { type: mongoose.Schema.Types.ObjectId, ref: 'spots' },
+    nationalities: { type: mongoose.Schema.Types.ObjectId, ref: 'nationalities' },
+    spots: { type: mongoose.Schema.Types.ObjectId, ref: 'spots' },
 
   });
   
