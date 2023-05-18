@@ -9,7 +9,7 @@ const userSchema = mongoose.Schema({
     password: String,
     token: String,
     nationalities: { type: mongoose.Schema.Types.ObjectId, ref: 'nationalities' },
-    spots: { type: mongoose.Schema.Types.ObjectId, ref: 'spots' },
+    spots: [{ type: mongoose.Schema.Types.ObjectId, ref: 'spots' }],
 
   });
   
