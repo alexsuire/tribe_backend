@@ -21,4 +21,15 @@ router.post("/", (req, res) => {
   });
 });
 
+// Route pour récupérer une session via son id
+router.get("/oneSession/:_id", (req, res) =>
+  Session.findOne({ _id: req.params._id })
+    .populate("spot")
+    .populate("admin")
+    .populate("users")
+    .then((data) => {
+      res.json({ data });
+    })
+);
+
 module.exports = router;

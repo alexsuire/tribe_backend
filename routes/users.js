@@ -75,7 +75,7 @@ router.put("/:token", async (req, res) => {
     // Recherche de l'utilisateur dans la base de données
     const user = await User.findOneAndUpdate(
       { token: token }, // Critère de recherche (ID de l'utilisateur)
-      { $set: { sessions: req.body.sessions } }, // Données à mettre à jour
+      { $push: { sessions: req.body.sessions } }, // Données à mettre à jour
       { new: true } // Retourner la version mise à jour de l'utilisateur
     );
 
