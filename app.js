@@ -10,7 +10,7 @@ var usersRouter = require("./routes/users");
 var nationalitiesRouter = require("./routes/nationalities");
 var spotsRouter = require("./routes/spots");
 var sessionsRouter = require("./routes/sessions");
-
+var messagesRouter = require("./routes/messages");
 var app = express();
 const cors = require("cors");
 
@@ -26,5 +26,5 @@ app.use("/users", usersRouter);
 app.use("/nationalities", nationalitiesRouter);
 app.use("/spots", spotsRouter);
 app.use("/sessions", sessionsRouter);
-
+app.use("/messages", messagesRouter);
 module.exports = app;

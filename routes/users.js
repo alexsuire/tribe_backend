@@ -114,4 +114,15 @@ router.get("/:token", (req, res) => {
     });
 });
 
+router.get("/basicInfo/:token", (req, res) => {
+  User.findOne({ token: req.params.token })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).json({ error: "Internal server error" });
+    });
+});
+
 module.exports = router;

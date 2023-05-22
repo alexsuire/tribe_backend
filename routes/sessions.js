@@ -32,4 +32,36 @@ router.get("/oneSession/:_id", (req, res) =>
     })
 );
 
+// Ajout d'un user dans une session
+router.post("/addUser/:sessionId/:userId", (req, res) => {
+  const sessionId = req.params.sessionId;
+  const userId = req.params.userId;
+
+  Session.findOne({ _id: sessionId })
+    .then((session) => {
+      if (!session) {
+        return res.json({ error: "Session not found" });
+      }
+
+      // Vérifier si l'utilisateur existe déjà dans la session
+      if (session.users.includes(userId)) {
+        return res.json({ error: "User already exists in the session" });
+      }
+
+      // Ajouter l'utilisateur à la liste des utilisateurs de la session
+      session.users.push(userId);
+
+      // Enregistrer les modifications de la session
+      session.save().then(() => {
+        res.json({
+          result: true,
+          message: "User added to session successfully",
+        });
+      });
+    })
+    .catch((error) => {
+      res.json({ error: "Internal server error" });
+    });
+});
+
 module.exports = router;
