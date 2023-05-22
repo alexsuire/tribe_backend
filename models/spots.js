@@ -8,7 +8,7 @@ const spotschema = mongoose.Schema({
     latitude: Number,
     longitude: Number,
     reliability: String,
-    sessions: { type: mongoose.Schema.Types.ObjectId, ref: 'sessions' },
+    sessions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'sessions' }],
     photo : String,
 });
 
