@@ -40,6 +40,7 @@ router.get("/getAllMessages/:sessionId", (req, res) => {
   const sessionId = req.params.sessionId;
 
   Message.find({ session: sessionId })
+    .populate("user")
     .then((data) => {
       res.json({ result: true, messages: data });
     })
