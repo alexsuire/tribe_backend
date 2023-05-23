@@ -5,15 +5,11 @@ const { checkBody } = require("../modules/checkBody");
 
 // ajout d'un message
 router.post("/add", (req, res) => {
-  if (!checkBody(req.body, ["userId", "text"])) {
-    res.json({ result: false, error: "Missing or empty fields" });
-    return;
-  }
   const newMessage = new Message({
     user: req.body.userId,
     text: req.body.text,
     date: Date.now(),
-    session: req.body.session,
+    session: req.body.sessionId,
   });
   newMessage
     .save()
@@ -37,6 +33,19 @@ router.get("/getAll", (req, res) => {
     .populate("user")
     .then((data) => {
       res.json({ result: true, messages: data });
+    });
+});
+
+router.get("/getAllMessages/:sessionId", (req, res) => {
+  const sessionId = req.params.sessionId;
+
+  Message.find({ session: sessionId })
+    .then((data) => {
+      res.json({ result: true, messages: data });
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).json({ error: "Internal server error" });
     });
 });
 
