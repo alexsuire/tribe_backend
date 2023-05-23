@@ -50,6 +50,12 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+router.post("/bySpotName", (req, res) => {
+  Spot.findOne({name: req.body.spotName})
+  .then((data) => {
+    res.json({ data });
+  });
+});
 
 
 module.exports = router;
