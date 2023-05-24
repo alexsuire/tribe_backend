@@ -68,27 +68,9 @@ router.post("/signin", (req, res) => {
   });
 });
 
-router.put("/:token", async (req, res) => {
-  try {
-    const { token } = req.params;
 
-    // Recherche de l'utilisateur dans la base de données
-    const user = await User.findOneAndUpdate(
-      { token: token }, // Critère de recherche (ID de l'utilisateur)
-      { $push: { sessions: req.body.sessions } }, // Données à mettre à jour
-      { new: true } // Retourner la version mise à jour de l'utilisateur
-    );
 
-    if (!user) {
-      return res.status(404).json({ message: "Utilisateur non trouvé" });
-    }
-
-    return res.status(200).json(user);
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: "Une erreur est survenue" });
-  }
-});
+    
 
 // Route pour récupérer l'utilisateur et ses sessions
 
