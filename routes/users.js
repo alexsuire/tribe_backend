@@ -94,7 +94,7 @@ router.put("/addSession/:token", async (req, res) => {
 
 router.get("/:token", (req, res) => {
   User.findOne({ token: req.params.token })
-
+  .populate("spots") // Add populate for "spots" field
     .populate({
       path: "sessions",
       populate: {
@@ -113,6 +113,7 @@ router.get("/:token", (req, res) => {
       res.status(500).json({ error: "Erreur interne du serveur" });
     });
 });
+
 
 router.get("/basicInfo/:token", (req, res) => {
   User.findOne({ token: req.params.token })

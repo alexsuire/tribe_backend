@@ -64,4 +64,13 @@ router.post("/addUser/:sessionId/:userId", (req, res) => {
     });
 });
 
+// Route pour récupérer tous les spots en base de donnée
+router.get("/", (req, res) => {
+  Session.find({})
+  .populate("spot")
+  .then((data) => {
+    res.json({ data });
+  });
+});
+
 module.exports = router;
