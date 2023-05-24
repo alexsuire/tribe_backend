@@ -68,7 +68,7 @@ router.post("/signin", (req, res) => {
   });
 });
 //ajout d'une session à un user avec token
-router.put("/:token", async (req, res) => {
+router.put("/addSession/:token", async (req, res) => {
   try {
     const { token } = req.params;
 
