@@ -32,7 +32,7 @@ router.get("/oneSession/:_id", (req, res) =>
     })
 );
 
-// Ajout d'un user dans une session
+// Ajout d'un user dans une session avec l'id
 router.post("/addUser/:sessionId/:userId", (req, res) => {
   const sessionId = req.params.sessionId;
   const userId = req.params.userId;

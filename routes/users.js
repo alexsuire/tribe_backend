@@ -67,7 +67,7 @@ router.post("/signin", (req, res) => {
     }
   });
 });
-
+//ajout d'une session à un user avec token
 router.put("/:token", async (req, res) => {
   try {
     const { token } = req.params;
@@ -129,10 +129,8 @@ router.get("/basicInfo/:token", (req, res) => {
 
 router.put("/session/:id", async (req, res) => {
   try {
-
-    // Recherche du spot dans la base de données
     const user = await User.findOneAndUpdate(
-      {_id: req.params.id}, 
+      { _id: req.params.id },
       { $push: { sessions: req.body.session } }, // Données à mettre à jour
       { new: true } // Retourner la version mise à jour du spot
     );
@@ -147,4 +145,5 @@ router.put("/session/:id", async (req, res) => {
     return res.status(500).json({ message: "Une erreur est survenue" });
   }
 });
+
 module.exports = router;
