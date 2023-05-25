@@ -145,4 +145,24 @@ router.put("/session/:id", async (req, res) => {
   }
 });
 
+router.get("/userFavoriteSpot/:token", (req, res) => {
+  User.findOne({ token: req.params.token })
+    .populate("spots") 
+    .then((user) => {
+      if (!user) {
+        res.status(401).json({ error: "Invalid token" });
+        return;
+      }
+
+      res.json(user.spots); // Corrected from user.sessions to user.spots
+    })
+    .catch((err) => {
+      res.status(500).json({ error: "Internal server error" });
+    });
+});
+
+
+
+
+
 module.exports = router;
