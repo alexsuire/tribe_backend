@@ -117,6 +117,8 @@ router.get("/:token", (req, res) => {
 
 router.get("/basicInfo/:token", (req, res) => {
   User.findOne({ token: req.params.token })
+    .populate('nationalities')
+    .populate('spots')
     .then((data) => {
       res.json(data);
     })
